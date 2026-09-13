@@ -1,64 +1,51 @@
 # PatchLoop
 
-Adaptive software maintenance agent MVP.
+### Adaptive Software Maintenance Agent
 
-Flow:
-Issue -> Understand -> Diagnose -> Plan -> Implement -> Test -> Failure Analysis -> Adapt -> Retry -> Verify -> Result
+> **Issue → Understand → Diagnose → Plan → Implement → Test → Failure Analysis → Adapt → Retry → Verify → Result**
 
-## Requirements
+PatchLoop is an AI-powered software maintenance agent that autonomously attempts to fix issues in GitHub repositories.
 
-- Python 3.11+
-- Node.js 20+
-- Docker
-- Git
-- An OpenAI-compatible LLM API key
+Unlike a basic coding agent that stops when its first fix fails, PatchLoop follows an **adaptive repair loop**:
 
-## 1. Backend
+1. Understand the issue
+2. Inspect the repository
+3. Diagnose the likely cause
+4. Create a repair plan
+5. Implement the fix
+6. Run the test suite
+7. Analyze actual test failures
+8. Adapt its strategy
+9. Retry the repair
+10. Verify the final result
+11. Produce an auditable repair history
 
-```bash
-cd backend
-python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-# source .venv/bin/activate
+---
 
-pip install -r requirements.txt
-copy .env.example .env   # Windows
-# cp .env.example .env   # macOS/Linux
+## 🚀 Live Demo
 
-uvicorn app.main:app --reload --port 8000
-```
+### **Try PatchLoop**
 
-Edit `.env`:
+**Frontend:**  
+[https://patch-loop.vercel.app](https://patch-loop.vercel.app/)
 
-```env
-LLM_API_KEY=your_key
-LLM_BASE_URL=https://api.openai.com/v1
-LLM_MODEL=gpt-4.1-mini
-MAX_ATTEMPTS=3
-```
+**Backend API:**  
+[https://patchloop.onrender.com](https://patchloop.onrender.com/)
 
-## 2. Frontend
+**API Health Check:**  
+[https://patchloop.onrender.com/api/health
+](https://patchloop.onrender.com/api/health)
+---
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+## 💡 What Makes PatchLoop Different?
 
-Open http://localhost:3000
+Most automated coding systems follow:
 
-## 3. Docker
-
-PatchLoop runs repository tests in an isolated Docker container. The host workspace is mounted into the container read/write. Do NOT use this MVP with untrusted repositories on a machine containing secrets. For a real deployment, use a hardened isolated worker/VM with network disabled, stronger resource limits, and secret isolation.
-
-## Demo
-
-Use a small Python/pytest repository with a reproducible issue.
-
-Enter:
-- GitHub repository URL
-- issue number or issue description
-
-The backend clones the repo, analyzes it, plans a fix, edits files, runs pytest in Docker, analyzes failures, resets between attempts, and produces an auditable attempt history.
+```text
+Issue
+  ↓
+Generate Fix
+  ↓
+Run Tests
+  ↓
+Done / Failed
