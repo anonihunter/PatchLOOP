@@ -1,0 +1,8 @@
+[
+  {
+    "repo": "https://github.com/example/python-repo",
+    "issue": "Replace with a real reproducible Python/pytest repository issue.",
+    "expected": "pytest -q",
+    "difficulty": "easy"
+  }
+]
