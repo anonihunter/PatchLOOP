@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import traceback
 import uuid
 from pathlib import Path
 
@@ -41,10 +42,27 @@ class AgentOrchestrator:
         self.state.branch = branch
         try:
             await self._run()
+            
         except Exception as e:
+            error_details = traceback.format_exc()
+
+            print("========== PATCHLOOP ERROR ==========")
+            print(error_details)
+            print("=====================================")
+
             self.state.final_status = "failed"
-            self.state.final_evidence = {"error": str(e)}
-            self.state.log(Phase.FINAL_RESULT, "Agent stopped with an error.", {"error": str(e)})
+            self.state.final_evidence = {
+                "error": str(e),
+                "traceback": error_details,
+            }
+            self.state.log(
+                Phase.FINAL_RESULT,
+                "Agent stopped with an error.",
+                {
+                    "error": str(e),
+                    "traceback": error_details,
+                },
+            )
 
     async def _run(self):
         self.state.log(Phase.RECEIVED, "Issue received.")
