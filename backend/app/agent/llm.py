@@ -59,7 +59,19 @@ class LLM:
                 )
 
             data = r.json()
-            return data["choices"][0]["message"]["content"]
+
+            message = data["choices"][0]["message"]
+            content = message.get("content")
+            
+            if content is None:
+                raise LLMError(
+                    f"LLM returned empty content. Response: {data}"
+                )
+            
+            if not isinstance(content, str):
+                content = str(content)
+            
+            return content
 
     async def json(self, system: str, user: str) -> dict:
         raw = await self.complete(
@@ -67,8 +79,11 @@ class LLM:
             user,
             json_mode=True,
         )
-
-        raw = raw.strip()
+        
+        if raw is None:
+            raise LLMError("LLM returned no content")
+        
+        raw = str(raw).strip()
 
         # 1. Normal JSON response
         try:
