@@ -12,9 +12,15 @@ Unlike a basic coding agent that stops when its first fix fails, PatchLoop follo
 
 ## 🚀 Live Demo
 
+<<<<<<< HEAD
 **Frontend:** [https://patch-loop.vercel.app](https://patch-loop.vercel.app/)  
 **Backend API:** [https://patchloop.onrender.com  ](https://patchloop.onrender.com/)
 **Health Check:** [https://patchloop.onrender.com/api/health](https://patchloop.onrender.com/api/health)
+=======
+**Frontend:** https://patch-loop.vercel.app  
+**Backend API:** https://patchloop.onrender.com  
+**Health Check:** https://patchloop.onrender.com/api/health
+>>>>>>> 2e138b7 (Readme File Updated)
 
 ---
 
@@ -431,8 +437,13 @@ NEXT_PUBLIC_API_URL=https://patchloop.onrender.com
 
 The live deployment is:
 
+<<<<<<< HEAD
 - **UI:** [https://patch-loop.vercel.app](https://patch-loop.vercel.app/)
 - **API:** [https://patchloop.onrender.com](https://patchloop.onrender.com/)
+=======
+- **UI:** https://patch-loop.vercel.app
+- **API:** https://patchloop.onrender.com
+>>>>>>> 2e138b7 (Readme File Updated)
 
 ---
 
@@ -503,7 +514,11 @@ These trade-offs keep the focus on the adaptive repair loop.
 **PatchLoop — Adaptive Software Maintenance Agent**
 
 GitHub: https://github.com/anonihunter/PatchLOOP  
+<<<<<<< HEAD
 Live Demo: [https://patch-loop.vercel.app](https://patch-loop.vercel.app/)
+=======
+Live Demo: https://patch-loop.vercel.app
+>>>>>>> 2e138b7 (Readme File Updated)
 
 ### ⭐ One-Line Pitch
 
